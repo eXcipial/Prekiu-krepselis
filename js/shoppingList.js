@@ -15,7 +15,7 @@ export function shoppingList(list) {
         const itemIndex = (index + 1).toString().padEnd(2);   // Išveda prekių numerį sąraše (nukreipiamas į skaičiavimo nuo 1, ne nuo 0).
         const name = item.name.padEnd(10);  // Pavadinimas
         const amount = item.amount.toString().padStart(4);  // Kiekis
-        const unitPrice = (item.unitPrice / 100).toFixed(2).padStart(6);  // 2 Skaičiai po kablelio
+        const unitPrice = (item.unitPrice / 100).toFixed(2).padStart(6);  // Vieneto kaina, 2 Skaičiai po kablelio
         const totalPrice = (item.amount * item.unitPrice / 100).toFixed(2).padStart(10); // Apskaičiuoja bendra kainą už visą kiekį (kaina už visą kiekį yra kaina už vienetą padauginta iš kiekio).
         
         output += `${itemIndex}. ${name} | ${amount} vnt | ${unitPrice} Eur | ${totalPrice} Eur\n`; // Output parinktas dėl lengvesnio teksto atvaizdavimo

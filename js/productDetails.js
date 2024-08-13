@@ -1,5 +1,5 @@
 export function productDetails(list, id) {
-    // Surandu produktą pagal jo ID iš sąrašo
+    // Suranda produktą pagal jo ID iš sąrašo
     const product = list.find(item => item.id === id);
 
     // Jei produktas nerastas, grąžina pranešimą

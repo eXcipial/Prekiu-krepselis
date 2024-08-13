@@ -18,7 +18,7 @@ export function shoppingList(list) {
         const unitPrice = (item.unitPrice / 100).toFixed(2).padStart(6);  // 2 Skaičiai po kablelio
         const totalPrice = (item.amount * item.unitPrice / 100).toFixed(2).padStart(10); // Apskaičiuoja bendra kainą už visą kiekį (kaina už visą kiekį yra kaina už vienetą padauginta iš kiekio).
         
-        output += `${itemIndex}. ${name} | ${amount} vnt | ${unitPrice} Eur | ${totalPrice} Eur\n`;
+        output += `${itemIndex}. ${name} | ${amount} vnt | ${unitPrice} Eur | ${totalPrice} Eur\n`; // Output parinktas dėl lengvesnio teksto atvaizdavimo
     });
 
     // Baigia formuoti prekių sąrašo išvedimą

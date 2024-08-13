@@ -4,7 +4,7 @@ export function shoppingList(list) {
         return "Šiuo metu, jūsų prekių krepšelis yra tuščias.";
     }
 
-    // Pradeda formuoti prekių sąrašo išvedimą ir formuoja daugiskaitą
+    // Pradeda formuoti prekių sąrašo išvedimą ir formuoja daugiskaitą jei daugiau nei 1vnt prideda raidę 's'
     let output = `Jūsų prekių krepšelyje yra ${list.length} prekė${list.length > 1 ? 's' : ''}:\n`;  
     output += "-----------------------------------------------------------\n";
     output += "Pavadinimas  | Kiekis      | Vieneto kaina | Viso mokėti\n";
@@ -14,9 +14,9 @@ export function shoppingList(list) {
     list.forEach((item, index) => {
         const itemIndex = (index + 1).toString().padEnd(2);
         const name = item.name.padEnd(10);
-        const amount = item.amount.toString().padStart(4);
-        const unitPrice = (item.unitPrice / 100).toFixed(2).padStart(6);
-        const totalPrice = (item.amount * item.unitPrice / 100).toFixed(2).padStart(10);
+        const amount = item.amount.toString().padStart(4);  // Kiekis
+        const unitPrice = (item.unitPrice / 100).toFixed(2).padStart(6);  // 2 Skaičiai po kablelio
+        const totalPrice = (item.amount * item.unitPrice / 100).toFixed(2).padStart(10); // Apskaičiuoja bendra kainą už visą kiekį (kaina už visą kiekį yra kaina už vienetą padauginta iš kiekio).
         
         output += `${itemIndex}. ${name} | ${amount} vnt | ${unitPrice} Eur | ${totalPrice} Eur\n`;
     });

@@ -1,13 +1,13 @@
 export function productDetails(list, id) {
-    // Surandame produktą pagal jo ID iš sąrašo
+    // Surandu produktą pagal jo ID iš sąrašo
     const product = list.find(item => item.id === id);
 
-    // Jei produktas nerastas, grąžiname pranešimą
+    // Jei produktas nerastas, grąžina pranešimą
     if (!product) {
         return `Prekė, su ID: ${id} neegzistuoja.`;
     }
 
-    // Jei produktas rastas, suformuojame išsamią produkto informaciją
+    // Jei produktas rastas, suformuoja išsamią produkto informaciją
     return `
 ------------------------------
 Prekės informacija

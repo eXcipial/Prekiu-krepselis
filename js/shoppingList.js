@@ -12,9 +12,9 @@ export function shoppingList(list) {
 
     // Pereina per kiekvieną prekę ir formuoja eilutes
     list.forEach((item, index) => {
-        const itemIndex = (index + 1).toString().padEnd(2);   // Išveda prekių numerį sąraše (nukreipiamas į skaičiavimo nuo 1, ne nuo 0).
-        const name = item.name.padEnd(10);  // Pavadinimas, prie eilutės pridėta 10 simbolių 
-        const amount = item.amount.toString().padStart(4);  // Kiekis, eilutės priekyje pridėti 4 simboliai
+        const itemIndex = (index + 1).toString().padEnd(2);   // Išveda prekių numerį sąraše i string (nukreipiamas į skaičiavimo nuo 1, ne nuo 0) bandoma išlaikyti lentelės forma
+        const name = item.name.padEnd(10);  // Bandoma išlaikyti lentelės formą pridės tarpų gale jeigu pavadinimas trumpesnis
+        const amount = item.amount.toString().padStart(4);  // Kiekis, eilutės priekyje pridėti 4 simboliai bandoma +- centruot
         const unitPrice = (item.unitPrice / 100).toFixed(2).padStart(6);  // Vieneto kaina, 2 Skaičiai po kablelio
         const totalPrice = (item.amount * item.unitPrice / 100).toFixed(2).padStart(10); // Apskaičiuoja bendra kainą už visą kiekį (kaina už visą kiekį yra kaina už vienetą padauginta iš kiekio).
         

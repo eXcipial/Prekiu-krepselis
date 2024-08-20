@@ -1,139 +1,86 @@
-// Vieta reikiamų failų importavimui... jei reikia tokių 👀
+# Terminalinis parduotuvės krepšelis
 
-/*
---------------------------------------------------------
-KOMENTARAS:
+Klientas nori galėti naudotis keliomis funkcijomis, kurios leistų pamatyti krepšelyje esančių prekių informaciją.
 
-Tolimesnis kodas, šiame faile, neredaguojamas!
+## Funkcijos
 
-Komentarai po console.log(), kuriuose iškviečiamos funkcijos rodo norimą terminale matyti rezultatą, kuris privalo būti identiškas pateiktam.
+### Viso prekių sąrašo spausdinimas
 
-Vienintelė išimtis, kada gali nesutapti spausdinamas rezultatas, jei kurdamas užduotį palikau skaičiavimo klaidą... tai jo... reikėtų suskaičiuoti teisingai 👍
---------------------------------------------------------
-*/
+-   priimami parametrai: prekių krepšelio masyvas
+-   grąžinamas rezultatas:
 
-const emptyList = [];
+    -   jei tuščias (**0,5 balo**):
 
-console.log(shoppingList(emptyList));
-/*
-Šiuo metu, jūsų prekių krepšelis yra tuščias.
-*/
+    ```
+    Šiuo metu, jūsų prekių krepšelis yra tuščias.
+    ```
 
-console.log(productDetails(emptyList, 42069));
-/*
-Prekė, su ID: 42069 neegzistuoja.
-*/
+    -   jei ne tuščias:
 
-const firstShoppingList = [
-    {
-        id: 1,
-        name: 'Pomidoras',
-        amount: 1000000,
-        unitPrice: 199,
-    },
-    {
-        id: 3,
-        name: 'Agurkas',
-        amount: 2,
-        unitPrice: 50,
-    },
-    {
-        id: 7,
-        name: 'Svogūnas',
-        amount: 1,
-        unitPrice: 45,
-    },
-];
+    ```
+    Jūsų prekių krepšelyje yra 3 prekės:
+    -----------------------------------------------------------
+    Pavadinimas  | Kiekis      | Vieneto kaina | Viso mokėti
+    -----------------------------------------------------------
+    1. Pomidoras | 1000000 vnt | 1.99 Eur      | 1990000.00 Eur
+    2. Agurkas   | 2 vnt       | 0.50 Eur      | 1.00 Eur
+    3. Svogūnas  | 1 vnt       | 0.45 Eur      | 0.45 Eur
+    -----------------------------------------------------------
+    ```
 
-console.log(shoppingList(firstShoppingList));
-/*
-Jūsų prekių krepšelyje yra 3 prekės:
------------------------------------------------------------
-Pavadinimas  | Kiekis      | Vieneto kaina | Viso mokėti
------------------------------------------------------------
-1. Pomidoras | 1000000 vnt | 1.99 Eur      | 1990000.00 Eur
-2. Agurkas   | 2 vnt       | 0.50 Eur      | 1.00 Eur
-3. Svogūnas  | 1 vnt       | 0.45 Eur      | 0.45 Eur
------------------------------------------------------------
-*/
+    > **2 balai** už teisingą informaciją
 
-console.log(productDetails(firstShoppingList, 42069));
-/*
-Prekė, su ID: 42069 neegzistuoja.
-*/
+    > **2 balai** už tinkamą lentelės formatą
 
-console.log(productDetails(firstShoppingList, 1));
-/*
-------------------------------
-Prekės informacija
-------------------------------
-ID            | 1
-Pavadinimas   | Pomidoras
-Kiekis        | 1000000 vnt
-Vieneto kaina | 1.99 Eur
-Viso mokėti   | 1990000.00 Eur
-------------------------------
-*/
+### Individualios prekės informacijos spausdinimas
 
-console.log(productDetails(firstShoppingList, 3));
-/*
-------------------------
-Prekės informacija
-------------------------
-ID            | 3
-Pavadinimas   | Agurkas
-Kiekis        | 2 vnt
-Vieneto kaina | 0.50 Eur
-Viso mokėti   | 1.00 Eur
-------------------------
-*/
+-   priimami parametrai: prekių krepšelio masyvas, prekės ID
+-   grąžinamas rezultatas:
 
-console.log(productDetails(firstShoppingList, 7));
-/*
-------------------------
-Prekės informacija
-------------------------
-ID            | 7
-Pavadinimas   | Svogūnas
-Kiekis        | 1 vnt
-Vieneto kaina | 0.45 Eur
-Viso mokėti   | 0.45 Eur
-------------------------
-*/
+    -   jei prekė neegzistuoja (**0,5 balo**):
 
-const singleProductShoppingList = [
-    {
-        id: 2,
-        name: 'Kivi',
-        amount: 23,
-        unitPrice: 14,
-    },
-];
+    ```
+    Prekė, su ID: 42069 neegzistuoja.
+    ```
 
-console.log(shoppingList(singleProductShoppingList));
-/*
-Jūsų prekių krepšelyje yra 1 prekė:
---------------------------------------------------
-Pavadinimas | Kiekis | Vieneto kaina | Viso mokėti
---------------------------------------------------
-1. Kivi     | 23 vnt | 0.14 Eur      | 3.22 Eur
---------------------------------------------------
-*/
+    -   jei prekė egzistuoja:
 
-console.log(productDetails(singleProductShoppingList, 42069));
-/*
-Prekė, su ID: 42069 neegzistuoja.
-*/
+    ```
+    ------------------------------
+    Prekės informacija
+    ------------------------------
+    ID            | 1
+    Pavadinimas   | Pomidoras
+    Kiekis        | 1000000 vnt
+    Vieneto kaina | 1.99 Eur
+    Viso mokėti   | 1990000.00 Eur
+    ------------------------------
+    ```
 
-console.log(productDetails(singleProductShoppingList, 2));
-/*
-------------------------
-Prekės informacija
-------------------------
-ID            | 2
-Pavadinimas   | Kivi
-Kiekis        | 23 vnt
-Vieneto kaina | 0.14 Eur
-Viso mokėti   | 3.22 Eur
-------------------------
-*/
+    > **1 balas** už teisingą informaciją
+
+    > **2 balai** už tinkamą lentelės formatą
+
+## Bendra informacija
+
+-   reikia paruošti `package.json` (**0,5 balo**)
+-   darome prielaidą, jog gaunama informacija visada yra teisinga, dėl to galima nerašyti validacijų
+-   atkreipti dėmesį į specifinėse vietose reikalingas žodžių galūnes, kurios gali priklausyti, pvz, nuo kiekio; linksniavimas privalo teisingai veikti skaičiams nuo 0 iki 1.000.000, nepaisant to, jog šiame uždavinyje esančiuose pavyzdžiuose nėra tokių didelių skaičių (**1 balas**)
+-   naudojama valiūta - `Eur`
+-   kainos visur privalo būti spausdinamo vienodu formatu, pvz.: `420.69 Eur`
+-   atkreipti dėmesį į lentelių struktūras:
+    -   horizontalių linijų ilgis
+    -   vertikalių linijų pozicijos
+    -   tekstai negali būti arčiau nei per 1 tarpą nuo vertikalios linijos
+-   visos funkcijos privalo būti atskiruose failuose (**0,5 balo**)
+-   pavyzdinė projekto failų struktūra:
+
+```
+- js/
+    - shoppingList.js
+    - productDetails.js
+- index.js (čia vykdomas užduoties logikos demonstravimas)
+- package.json
+```
+
+-   jei vis gi, kas nors ketina rašyti validacijas, tai jos turėtų būti visose logiškose vietose, būti pakankamos ir už tai galima bus užsidirbti extra 1 balą

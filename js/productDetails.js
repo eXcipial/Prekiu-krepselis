@@ -10,8 +10,8 @@ export function productDetails(list, id) {
     const longestFieldLength = Math.max(
         'Pavadinimas   | '.length + product.name.length,
         'Kiekis        | '.length + product.amount.toString().length + 4, // " vnt" užima 4 simbolius
-        'Vieneto kaina | '.length + (product.unitPrice / 100).toFixed(2).length + 4, // " Eur" užima 4 simbolius
-        'Viso mokėti   | '.length + totalPrice.length + 4 // " Eur" užima 4 simbolius
+        'Vieneto kaina | '.length + (product.unitPrice / 100).toFixed(2).length + 4, 
+        'Viso mokėti   | '.length + totalPrice.length + 4
     );
 
     const line = '-'.repeat(longestFieldLength);
@@ -26,4 +26,3 @@ Vieneto kaina | ${(product.unitPrice / 100).toFixed(2)} Eur
 Viso mokėti   | ${totalPrice} Eur
 ${line}`;
 }
-

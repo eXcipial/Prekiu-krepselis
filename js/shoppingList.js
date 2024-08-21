@@ -1,27 +1,48 @@
 export function shoppingList(list) {
-    // Jei krepšelis tuščias, grąžina pranešimą
     if (list.length === 0) {
         return "Šiuo metu, jūsų prekių krepšelis yra tuščias.";
     }
 
-    // Pradeda formuoti prekių sąrašo išvedimą ir formuoja daugiskaitą jei daugiau nei 1vnt prideda raidę 's'
-    let output = `Jūsų prekių krepšelyje yra ${list.length} prekė${list.length > 1 ? 's' : ''}:\n`;  
-    output += "-----------------------------------------------------------\n";
-    output += "Pavadinimas  | Kiekis      | Vieneto kaina | Viso mokėti\n";
-    output += "-----------------------------------------------------------\n";
+    
+    const maxNameLength = Math.max(...list.map(item => item.name.length), "Pavadinimas".length);
+    const maxAmountLength = Math.max(...list.map(item => `${item.amount} vnt`.length), "Kiekis".length);
+    const maxUnitPriceLength = Math.max(...list.map(item => `${(item.unitPrice / 100).toFixed(2)} Eur`.length), "Vieneto kaina".length);
+    const maxTotalPriceLength = Math.max(...list.map(item => `${(item.amount * item.unitPrice / 100).toFixed(2)} Eur`.length), "Viso mokėti".length);
 
-    // Pereina per kiekvieną prekę ir formuoja eilutes
+    
+    const headerLine = `    Pavadinimas${' '.repeat(maxNameLength - "Pavadinimas".length + 1)}| Kiekis${' '.repeat(maxAmountLength - "Kiekis".length + 1)}| Vieneto kaina${' '.repeat(maxUnitPriceLength - "Vieneto kaina".length + 1)}| Viso mokėti${' '.repeat(maxTotalPriceLength - "Viso mokėti".length)}`;
+    const separator = '-'.repeat(headerLine.length);
+
+    let output = `Jūsų prekių krepšelyje yra ${list.length} prekė${list.length > 1 ? 's' : ''}:\n`;
+    output += `${separator}\n`;
+    output += `${headerLine}\n`;
+    output += `${separator}\n`;
+
     list.forEach((item, index) => {
-        const itemIndex = (index + 1).toString().padEnd(2);   // Išveda prekių numerį sąraše i string (nukreipiamas į skaičiavimo nuo 1, ne nuo 0) bandoma išlaikyti lentelės forma
-        const name = item.name.padEnd(10);  // Bandoma išlaikyti lentelės formą pridės tarpų gale jeigu pavadinimas trumpesnis
-        const amount = item.amount.toString().padStart(4);  // Kiekis, eilutės priekyje pridėti 4 simboliai bandoma +- centruot
-        const unitPrice = (item.unitPrice / 100).toFixed(2).padStart(6);  // Vieneto kaina, 2 Skaičiai po kablelio
-        const totalPrice = (item.amount * item.unitPrice / 100).toFixed(2).padStart(10); // Apskaičiuoja bendra kainą už visą kiekį (kaina už visą kiekį yra kaina už vienetą padauginta iš kiekio).
+        const itemIndex = (index + 1).toString().padStart(2, ' ');
+        const name = item.name.padEnd(maxNameLength, ' ');
+        const amount = `${item.amount} vnt`.padEnd(maxAmountLength, ' ');
+        const unitPrice = `${(item.unitPrice / 100).toFixed(2)} Eur`.padEnd(maxUnitPriceLength, ' ');
+        const totalPrice = `${(item.amount * item.unitPrice / 100).toFixed(2)} Eur`.padEnd(maxTotalPriceLength, ' ');
+
         
-        output += `${itemIndex}. ${name} | ${amount} vnt | ${unitPrice} Eur | ${totalPrice} Eur\n`; // Output parinktas dėl lengvesnio teksto atvaizdavimo
+        output += `${itemIndex}. ${name} | ${amount} | ${unitPrice} | ${totalPrice}\n`;
     });
 
-    // Baigia formuoti prekių sąrašo išvedimą
-    output += "-----------------------------------------------------------\n";
+    output += `${separator}`;
+
     return output;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
